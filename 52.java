@@ -20,18 +20,6 @@ class Solution {
         return board;
     }
 
-    // Follow the steps mentioned below to implement the idea:
-
-    // Make a recursive function that takes the state of the board and the current row number as its parameter.
-    // Start in the topmost row.
-    // If all queens are placed return true
-    // Try all columns in the current row. Do the following for every tried column.
-    //     If the queen can be placed safely in this column
-    //         Then mark this [row, column] as part of the solution and recursively check if placing queen here leads to a solution.
-    //         If placing the queen in [row, column] leads to a solution then return true.
-    //         If placing queen doesn’t lead to a solution then unmark this [row, column] and track back and try other columns.
-    // If all columns have been tried and nothing worked return false to trigger backtracking.
-
     public void recur(int[][] board, int row, int numQueens) {
         if (numQueens == 0) {
             this.sol += 1;
