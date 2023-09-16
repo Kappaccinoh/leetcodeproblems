@@ -21,15 +21,30 @@ int main(int argc, char const *argv[])
 
 
 int* nodesBetweenCriticalPoints(struct ListNode* head, int* returnSize){
+    if (head == NULL) {
+        int *ptr = (int*) malloc(2 * sizeof(int));
+        int *ans = ptr;
+        *ptr = -1;
+        ptr++;
+        *ptr = -1;
+        return ans;
+    }
     long length = 0;
     struct ListNode *ptr = head;
     while (ptr != NULL) {
+        if (ptr->next == NULL) {
+            break;
+        }
         ptr = ptr->next;
         length++;
     }
+    printf("length: %d", length);
     if (length < 3) {
-        int wer[2] = {-1,-1};
-        int *ans = wer;
+        int *ptr = (int*) malloc(2 * sizeof(int));
+        int *ans = ptr;
+        *ptr = -1;
+        ptr++;
+        *ptr = -1;
         return ans;
     }
     ptr = head;
@@ -63,7 +78,7 @@ int* nodesBetweenCriticalPoints(struct ListNode* head, int* returnSize){
         }
     }
 
-    for (int i = length; i >= 0; i--) {
+    for (int i = length - 1; i >= 0; i--) {
         if (listToArr[i] == 1) {
             maxDist1 = i;
             break;
@@ -88,6 +103,7 @@ int* nodesBetweenCriticalPoints(struct ListNode* head, int* returnSize){
     int arr[2];
     arr[0] = minDist;
     arr[1] = maxDist1 - maxDist0;
-    int *ans = arr;
-    return ans;
+    // printf("%d", minDist);
+    // printf("%d", maxDist1 - maxDist0);
+    return arr;
 }
